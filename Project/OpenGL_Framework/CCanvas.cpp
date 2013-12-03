@@ -139,14 +139,15 @@ void CCanvas::paintGL()
 
 
 
-  // set up a sphere
+  // set up a sphere (sun)
   Sphere sphere (20,10);
 
   //every time you push something, pop it later. make sure the stack is always empty!
   glPushMatrix();
+glColor3f(1.0, 1.0, 0.0);
   // transform and draw sphere
   glTranslated (0.0, 0.0, -5.0);
-  glRotated ( tau, 0,0,1 );
+ // glRotated ( tau, 0,0,1 );
   //glScaled (2.0, 2.0, 2.0);
 
 
@@ -161,13 +162,14 @@ void CCanvas::paintGL()
   //glPopMatrix();
 
   //glPushMatrix();
-  // set up another sphere
+  // set up another sphere (Earth)
   Sphere sphere2 (20,10);
 
   // transform and draw sphere
+  glRotated ( tau2, 0,0,1 );
   glTranslated (2.0, 2.0, 0);
   //glScaled (0.5, 0.5, 0.5);
-  glRotated ( tau2, 0,0,1 );
+
 
   glPushMatrix();
   glScaled (0.3, 0.3, 0.3);
@@ -178,13 +180,14 @@ void CCanvas::paintGL()
   //glPopMatrix();
 
   glPushMatrix();
-
+//Moon
   Sphere sphere3 (20,10);
 
   // transform and draw sphere
+  glRotated ( tau2, 0,0,1 );
   glTranslated (2.0, 2.0, 0);
   //glScaled (0.5, 0.5, 0.5);
-  glRotated ( tau2, 0,0,1 );
+
 
   glPushMatrix();
   glScaled (0.3, 0.3, 0.3);
