@@ -17,11 +17,13 @@ class Planet
 {
 public:
     Planet();
-    void draw();
-    std::vector< Planet > children;
+    virtual void draw(float, float) = 0;
+    std::vector< Planet *> children;
 
     int childcount;
     Sphere sphere;
+    GLuint name;
+//save name
 
 
 

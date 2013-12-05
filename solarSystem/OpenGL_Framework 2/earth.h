@@ -9,11 +9,12 @@
 #include <QImage>
 #include "Base.h"
 
-class Earth : Planet
+class Earth : public Planet
 {
 public:
     Earth();
-    void draw(double);
+    //void draw(double);
+    void draw(float, float);
 };
 
 #endif // EARTH_H

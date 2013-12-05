@@ -13,11 +13,12 @@
 #include <QImage>
 
 
-class Moon : Planet
+class Moon : public Planet
 {
 public:
     Moon();
-    void draw(double);
+    //void draw(double);
+    void draw(float, float);
 };
 
 #endif // MOON_H

@@ -23,13 +23,16 @@ class CCanvas : public QGLWidget
 
 public:
 
-  explicit CCanvas(QWidget *parent = 0) : QGLWidget(parent),tau(0.0)
+  explicit CCanvas(QWidget *parent = 0) : QGLWidget(parent)//,HourOfDay(0.0)
   {       
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateGL()));
     timer->start(10);
   };
-      double tau;
+     // double tau;
+    float HourOfDay;
+   float DayOfYear;
+   float AnimateIncrement;
 
 protected:
 

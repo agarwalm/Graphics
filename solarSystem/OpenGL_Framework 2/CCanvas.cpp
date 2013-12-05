@@ -18,6 +18,10 @@ void CCanvas::initializeGL()
   glDepthFunc(GL_LEQUAL);								              // The Type Of Depth Testing To Do
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
+  HourOfDay = 0.0;
+  DayOfYear = 0.0;
+  AnimateIncrement = 1.0;
+
 };
 
 
@@ -130,7 +134,7 @@ void CCanvas::resizeGL(int width, int height)
 
   // front and back clipping plane at
   double n = -1.0;
-  double f = -100.0;
+  double f = -200.0;
   
   // frustum corners
   double t = -tan(beta*3.14159/360.0) * n;
@@ -160,6 +164,14 @@ void CCanvas::paintGL()
   // set model-view matrix
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+
+  // Back off eight units to be able to view from the origin.
+  glTranslatef ( 0.0, 0.0, -8.0 );
+
+  // Rotate the plane of the elliptic
+  // (rotate the model's plane about the x axis by fifteen degrees)
+  glRotatef( 15.0, 1.0, 0.0, 0.0 );
+
   //lookAt( 0,0,0,  0,0,-1,  0,1,0 );     // camera position , "look at" point , view-up vector
   GLfloat ambient[] = { 0.0, 0.0, 0.0, 1.0 };
   GLfloat diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
@@ -175,8 +187,14 @@ void CCanvas::paintGL()
 
   cout << "got here"<<endl;
   Sun sun;
-  sun.draw(tau);
+ // sun.draw(tau);
+  sun.draw(HourOfDay, DayOfYear);
 
-  tau += 1.0;
-  //tau2 += 0.1;
+  HourOfDay += AnimateIncrement;
+  DayOfYear = HourOfDay/24.0;
+//  HourOfDay -= ((HourOfDay/24))*24;
+//  DayOfYear -= - ((DayOfYear/365))*365;
+
+  //tau += 0.1;
+
 }

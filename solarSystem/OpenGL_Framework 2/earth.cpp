@@ -10,21 +10,21 @@ Earth::Earth()
 
 Moon moon;
 
-void Earth::draw(double tau){
-
+//void Earth::draw(double tau){
+void Earth::draw(float HourOfDay, float DayOfYear){
     //draw the earth
-    glRotated(tau, 0,0,1);
-    glTranslated(3.0, 3.0, 0);
+    glRotated(360.0*DayOfYear/365.0, 0.0, 1.0, 0.0); //rotation around the sun
+    glTranslated(4.0, 0.0, 0.0);
 
     glPushMatrix();
-
-    glRotated(tau, 0,0,1);
+//(sin(23.0*PI/180)
+    glRotated(360.0*HourOfDay/24.0, 0.0, 1, 0.0 ); //rotation on its own axis
     glScaled(0.5, 0.5, 0.5);
-    glColor3f(0.0, 0.0, 2.0);
+    glColor3f(0.2, 0.2, 1.0);
     sphere.draw();
 
     glPopMatrix();
 
     //draw the children
-    moon.draw(tau);
+    moon.draw(HourOfDay, DayOfYear);
 }
