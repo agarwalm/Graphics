@@ -7,4 +7,5 @@
 Planet::Planet()
 {
     sphere = Sphere(20,10);
+    name = 1;
 }

@@ -11,6 +11,7 @@
 #include <QString>
 #include <QImage>
 #include "Base.h"
+#include "Animation.h"
 
 using namespace std;
 

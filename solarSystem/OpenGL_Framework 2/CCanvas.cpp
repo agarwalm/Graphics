@@ -4,6 +4,9 @@
 #include "Sun.h"
 #include <QString>
 #include <QImage>
+#include <GLUT/glut.h>
+#include "Animation.h"
+#include <stdlib.h>
 
 using namespace std;
 
@@ -20,7 +23,7 @@ void CCanvas::initializeGL()
 
   HourOfDay = 0.0;
   DayOfYear = 0.0;
-  AnimateIncrement = 1.0;
+  AnimateIncrement = 4.0;
 
 };
 
@@ -134,7 +137,7 @@ void CCanvas::resizeGL(int width, int height)
 
   // front and back clipping plane at
   double n = -1.0;
-  double f = -200.0;
+  double f = -100.0;
   
   // frustum corners
   double t = -tan(beta*3.14159/360.0) * n;
@@ -160,23 +163,27 @@ void CCanvas::paintGL()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glShadeModel(GL_SMOOTH);
-  glEnable(GL_COLOR_MATERIAL);
+  //glEnable(GL_COLOR_MATERIAL);
+  glMatrixMode(GL_PROJECTION);
+
   // set model-view matrix
   glMatrixMode(GL_MODELVIEW);
+
   glLoadIdentity();
-
+  glPushMatrix();
   // Back off eight units to be able to view from the origin.
-  glTranslatef ( 0.0, 0.0, -8.0 );
+//  glTranslatef ( 0.0, 0.0, -8.0 );
 
-  // Rotate the plane of the elliptic
-  // (rotate the model's plane about the x axis by fifteen degrees)
-  glRotatef( 15.0, 1.0, 0.0, 0.0 );
+//  // Rotate the plane of the elliptic
+//  // (rotate the model's plane about the x axis by fifteen degrees)
+//  glRotatef( 15.0, 1.0, 0.0, 0.0 );
 
-  //lookAt( 0,0,0,  0,0,-1,  0,1,0 );     // camera position , "look at" point , view-up vector
+  lookAt( 0,0,0,  0,0,-1,  0,1,0 );     // camera position , "look at" point , view-up vector
   GLfloat ambient[] = { 0.0, 0.0, 0.0, 1.0 };
   GLfloat diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
   GLfloat specular[] = { 1.0, 1.0, 1.0, 1.0 };
   GLfloat position[] = { 0.0, 4, -5, 1.0 };
+  GLfloat position1[] = { 0.0, 0.0, 0, 1.0 };
 
   glLightfv( GL_LIGHT0, GL_AMBIENT, ambient );
   glLightfv( GL_LIGHT0, GL_DIFFUSE, diffuse );
@@ -185,7 +192,13 @@ void CCanvas::paintGL()
   glEnable( GL_LIGHTING );
   glEnable( GL_LIGHT0 );
 
-  cout << "got here"<<endl;
+  glLightfv( GL_LIGHT1, GL_AMBIENT, ambient );
+  glLightfv( GL_LIGHT1, GL_DIFFUSE, diffuse );
+  glLightfv( GL_LIGHT1, GL_SPECULAR, specular );
+  glLightfv( GL_LIGHT1, GL_POSITION, position1 );
+  glEnable( GL_LIGHTING );
+  glEnable( GL_LIGHT1 );
+
   Sun sun;
  // sun.draw(tau);
   sun.draw(HourOfDay, DayOfYear);
@@ -196,5 +209,10 @@ void CCanvas::paintGL()
 //  DayOfYear -= - ((DayOfYear/365))*365;
 
   //tau += 0.1;
+ // OpenGLInit();
+Animation animation;
+          // Set up callback functions for key presses
+glutKeyboardFunc( animation.KeyPressFunc('r', 1,1) );
+glutSpecialFunc( animation.SpecialKeyFunc(1,1,1) );
 
 }

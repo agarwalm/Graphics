@@ -13,6 +13,7 @@ class Sun : public Planet
 {
 public:
     Sun();
+    QImage img;
    // void draw(double);
     void draw(float, float);
 };

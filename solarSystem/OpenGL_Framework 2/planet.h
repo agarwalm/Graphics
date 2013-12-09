@@ -23,6 +23,7 @@ public:
     int childcount;
     Sphere sphere;
     GLuint name;
+
 //save name
 
 

@@ -18,6 +18,8 @@ UI_DIR = uis
 # Input
 include(GLRender.pri)
 
-HEADERS +=
+HEADERS += \
+    Animation.h
 
-SOURCES +=
+SOURCES += \
+    Animation.cpp
