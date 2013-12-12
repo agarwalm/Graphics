@@ -9,13 +9,12 @@
 #include <QImage>
 #include "Base.h"
 
-class Sun : public Planet
+class Sun : Planet
 {
 public:
     Sun();
-    QImage img;
-   // void draw(double);
     void draw(float, float);
+
 };
 
 #endif // SUN_H

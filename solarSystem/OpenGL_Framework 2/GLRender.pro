@@ -19,7 +19,9 @@ UI_DIR = uis
 include(GLRender.pri)
 
 HEADERS += \
-    Animation.h
+    Animation.h \
+    cube.h
 
 SOURCES += \
-    Animation.cpp
+    Animation.cpp \
+    cube.cpp

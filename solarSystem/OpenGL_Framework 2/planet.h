@@ -9,7 +9,7 @@
 #include <QString>
 #include <QImage>
 #include "Base.h"
-
+#include "cube.h"
 
 
 
@@ -17,15 +17,14 @@ class Planet
 {
 public:
     Planet();
-    virtual void draw(float, float) = 0;
+    virtual void draw(float HourOfDay, float DayOfYear)=0;
     std::vector< Planet *> children;
 
     int childcount;
     Sphere sphere;
     GLuint name;
-
-//save name
-
+    GLuint name2;
+    Cube cube;
 
 
 };

@@ -17,7 +17,6 @@ class Moon : public Planet
 {
 public:
     Moon();
-    //void draw(double);
     void draw(float, float);
 };
 

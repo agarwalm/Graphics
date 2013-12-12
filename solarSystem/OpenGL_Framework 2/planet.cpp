@@ -3,9 +3,10 @@
 #include "Base.h"
 #include "Sphere.h"
 #include "Sun.h"
+#include "cube.h"
 
 Planet::Planet()
 {
     sphere = Sphere(20,10);
-    name = 1;
+    cube = Cube(1.0);
 }

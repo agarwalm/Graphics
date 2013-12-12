@@ -11,9 +11,10 @@
 #include <QString>
 #include <QImage>
 #include "Base.h"
-#include "Animation.h"
 
 using namespace std;
+
+class Sun; //forward declaration
 
 /************************************************************************/
 /* Canvas to draw                                                       */
@@ -24,16 +25,28 @@ class CCanvas : public QGLWidget
 
 public:
 
-  explicit CCanvas(QWidget *parent = 0) : QGLWidget(parent)//,HourOfDay(0.0)
-  {       
+    explicit CCanvas(QWidget *parent = 0) : QGLWidget(parent), sun(NULL)
+  {
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateGL()));
     timer->start(10);
-  };
-     // double tau;
+  }
+    void setDate(int);
+    void pause();
+    char* getWeather();
+    void upArrow();
+    void downArrow();
+    void rightArrow();
+    void leftArrow();
+    void forward();
+    void back();
+      //double tau;
     float HourOfDay;
-   float DayOfYear;
-   float AnimateIncrement;
+    float DayOfYear;
+    float AnimateIncrement;
+    int numOfDays;
+
+    Sun *sun;
 
 protected:
 
@@ -62,8 +75,13 @@ private:
   vector< Point3d > v;
   struct Triangle { int v[3]; };
   vector< Triangle > t;
+  Point3d eye;
+    Point3d center;
+    Point3d up;
+    double angle;
+    double angle2;
 
   //double tau2;
 
 };
-#endif 
+#endif
