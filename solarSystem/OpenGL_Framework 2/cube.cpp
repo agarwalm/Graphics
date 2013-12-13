@@ -12,7 +12,7 @@ void Cube::draw(float x) {
 
    // glEnable(GL_NORMALIZE);
 
-     //   glTranslatef(2.0, 0.0, 0.0);
+        glTranslatef(2.0, 0.0, 0.0);
 
         glBegin(GL_QUADS);
 
@@ -82,69 +82,115 @@ void Cube::draw(float x) {
 
 // glBegin(GL_POLYGON);
 
- //Front face blue
+ //back face blue
 
  glNormal3f(0,0,-1);
- glColor3f( 0.0, 0.0, 1.0 );
- glVertex3f( -x, -x, -x);       // P1
- glVertex3f( -x,  x, -x);       // P2
- glVertex3f(  x,  x, -x);       // P3
- glVertex3f(  x, -x, -x);       // P4
+// glColor3f( 0.0, 0.0, 1.0 );
 
-// glEnd();
+ glTexCoord2d(1.0/3, 3.0/4);
+ glVertex3f( -x, -x, -x);       // bottom left
 
- //Back face white
-// glBegin(GL_POLYGON);
+ glTexCoord2d(1.0/3, 1.0);
+ glVertex3f( -x,  x, -x);       // top left
+
+ glTexCoord2d(2.0/3, 1);
+ glVertex3f(  x,  x, -x);       // top right
+
+ glTexCoord2d(2.0/3, 3.0/4);
+ glVertex3f(  x, -x, -x);       // bottom right
+
+
+
+ //front face white
+
 glNormal3f(0,0,1);
- glColor3f(   1.0,  1.0, 1.0 );
+// glColor3f(   1.0,  1.0, 1.0 ); //bottom right
+  glTexCoord2d(2.0/3, 2.0/4);
  glVertex3f(  x, -x, x );
- glColor3f( 1.0, 0.0, 0.0 );
+
+// glColor3f( 1.0, 0.0, 0.0 );  //top right
+ glTexCoord2d(2.0/3, 1.0/4);
  glVertex3f(  x,  x, x);
- glColor3f( 0.0, 1.0, 0.0 );
+
+// glColor3f( 0.0, 1.0, 0.0 ); //top left
+  glTexCoord2d(1.0/3, 1.0/4);
  glVertex3f( -x,  x, x );
- glColor3f( 0.0, 0.0, 1.0 );
+
+ //glColor3f( 0.0, 0.0, 1.0 ); //bottom left
+  glTexCoord2d(1.0/3, 2.0/4);
  glVertex3f( -x, -x, x );
 
-// glEnd();
+
 
  //Right face purple
-// glBegin(GL_POLYGON);
+
  glNormal3f(1,0,0);
- glColor3f(  1.0,  0.0,  1.0 );
- glVertex3f( x, -x, -x );
- glVertex3f( x,  x, -x );
+// glColor3f(  1.0,  0.0,  1.0 );
+
+ glTexCoord2d(1, 2.0/4);
+ glVertex3f( x, -x, -x ); //bottom back
+
+ glTexCoord2d(1, 1.0/4);
+ glVertex3f( x,  x, -x ); //top back
+
+ glTexCoord2d(2.0/3, 1/4); //top front
  glVertex3f( x,  x,  x );
- glVertex3f( x, -x,  x );
-// glEnd();
+
+ glTexCoord2d(2.0/3, 2.0/4);
+ glVertex3f( x, -x,  x ); //bottom front
+
 
  //left face green
-// glBegin(GL_POLYGON);
+
  glNormal3f(-1,0,0);
- glColor3f(   0.0,  1.0,  0.0 );
+// glColor3f(   0.0,  1.0,  0.0 ); //bottom right
+ glTexCoord2d(1.0/3, 2.0/4);
  glVertex3f( -x, -x,  x );
+
+// glColor3f(   1.0,  0.0,  0.0 ); //top right
+ glTexCoord2d(1.0/3, 1.0/4);
  glVertex3f( -x,  x,  x );
+
+ //glColor3f(   0.0,  0.0,  1.0 ); //top left
+ glTexCoord2d(0, 1.0/4);
  glVertex3f( -x,  x, -x );
+
+// glColor3f(   1.0,  1.0,  0.0 ); //bottom left
+ glTexCoord2d(0,2.0/4);
  glVertex3f( -x, -x, -x );
- //glEnd();
+
 
  // Blue side - TOP
-// glBegin(GL_POLYGON);
+
  glNormal3f(0,1,0);
- glColor3f(   0.0,  0.0,  1.0 );
- glVertex3f(  x,  x,  x );
- glVertex3f(  x,  x, -x );
+// glColor3f(   0.0,  0.0,  1.0 );
+ glTexCoord2d(2.0/3, 1.0/4);
+ glVertex3f(  x,  x,  x ); //front right
+
+ glTexCoord2d(2.0/3, 0);
+ glVertex3f(  x,  x, -x );//back right
+
+ glTexCoord2d(1.0/3, 0); //back left
  glVertex3f( -x,  x, -x );
+
+ glTexCoord2d(1.0/3, 1.0/4); //front left
  glVertex3f( -x,  x,  x );
-//glEnd();
+
 
  // Red side - BOTTOM
- //glBegin(GL_POLYGON);
  glNormal3f(0,-1,0);
- glColor3f(   1.0,  0.0,  0.0 );
- glVertex3f(  x, -x, -x );
- glVertex3f(  x, -x,  x );
- glVertex3f( -x, -x,  x );
- glVertex3f( -x, -x, -x );
+// glColor3f(   1.0,  0.0,  0.0 );
+ glTexCoord2d(2.0/3, 3.0/4);
+ glVertex3f(  x, -x, -x ); //back right
+
+ glTexCoord2d(2.0/3, 2.0/4);
+ glVertex3f(  x, -x,  x ); //front right
+
+ glTexCoord2d(1.0/3, 2.0/4);
+ glVertex3f( -x, -x,  x ); //front left
+
+ glTexCoord2d(1.0/3, 3.0/4);
+ glVertex3f( -x, -x, -x ); //back left
  glEnd();
 
  glFlush();
